@@ -7,7 +7,7 @@ name varchar(40) not null
 create table if not exists Artist(
 id serial primary key,
 name varchar(25) not null,
-genre_id integer references Genre(id));
+);
 
 create table if not exists Albums(
 id serial primary key,
@@ -19,6 +19,7 @@ create table if not exists Songs(
 id serial primary key,
 name varchar(40) NOT NULL,
 duration integer
+albums_id integer references Albums(id)
 );
 
 create table if not exists Collection(
@@ -37,4 +38,10 @@ create table if not exists AlbumsArtists(
 id serial primary key,
 albums_id integer references Albums(id),
 artist_id integer references Artist(id)
+);
+
+create table if not exists SongsCollections(
+id serial primary key,
+songs_id integer references Songs(id),
+collection_id integer refernces Collections(id)
 );
